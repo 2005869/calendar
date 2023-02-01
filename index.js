@@ -29,7 +29,7 @@ mongoose.connect(`mongodb://${mongoHost}:${mongoPORT}/${database}`, optionsDatab
 
 // Rotes
 app.get('/', (req, res) => {
-    res.send('Home')
+    res.render('index');
 });
 
 app.get('/create', (req, res) => {
