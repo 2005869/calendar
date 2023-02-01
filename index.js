@@ -53,6 +53,11 @@ app.post('/create', async (req, res) => {
     }
 });
 
+app.get('/getcalendar', async (req, res) => {
+    var appointment = await AppointmentService.GetAll(false);
+    res.json(appointment);
+});
+
 
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);
