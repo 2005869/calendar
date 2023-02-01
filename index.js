@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const AppointmentService = require('./services/AppointmentService');
 
 const serverPORT = 8080;
 const mongoHost = 'localhost';
@@ -28,11 +29,28 @@ mongoose.connect(`mongodb://${mongoHost}:${mongoPORT}/${database}`, optionsDatab
 
 // Rotes
 app.get('/', (req, res) => {
-
+    res.send('Home')
 });
 
 app.get('/create', (req, res) => {
-    res.render('create');
+    res.render('create', {error: false});
+});
+
+app.post('/create', async (req, res) => {
+    var status = await AppointmentService.Create(
+        req.body.name,
+        req.body.email,
+        req.body.description,
+        req.body.cpf,
+        req.body.date,
+        req.body.time,
+    )
+    if (status){
+        res.redirect('/');
+    }else{
+        console.log('create error');
+        res.render('create', {error: "Something went wrong"});
+    }
 });
 
 
