@@ -31,6 +31,10 @@ app.get('/', (req, res) => {
 
 });
 
+app.get('/create', (req, res) => {
+    res.render('create');
+});
+
 
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);
