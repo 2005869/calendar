@@ -56,6 +56,11 @@ class AppointmentService{
         }
         
     }
+
+    async Search(query){
+        var appos = await Appointment.find().or([{email: query}, {cpf: query}]);
+        return appos;
+    }
 }
 
 module.exports = new AppointmentService();

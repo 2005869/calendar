@@ -77,6 +77,18 @@ app.get('/list', async (req, res) => {
     res.render('list', {appos});
 });
 
+app.post('/list', async (req, res) => {
+    try{
+        var appos = await AppointmentService.Search(req.body.search);
+        res.render('list', {appos});
+    }catch(err){
+        console.log(err);
+        res.render('index', {error: 'cant find appointment'});  
+    }
+    
+
+});
+
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);
 });
