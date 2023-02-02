@@ -100,6 +100,16 @@ class AppointmentService{
                 }
             });
     }
+
+    async RemoveById(id){
+        try{
+            const appoById = await Appointment.deleteOne({_id: id});
+            return true;
+        }catch(err){
+            console.log(err);
+            return false;
+        }
+    }
 }
 
 module.exports = new AppointmentService();

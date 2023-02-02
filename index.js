@@ -66,7 +66,7 @@ app.get('/event/:id', async (req, res) => {
 app.post('/finish', async (req, res) => {
     var result = await AppointmentService.Finish(req.body.id);
     if (result){
-        res.render('index', {error: false});
+        res.redirect('list');
     }else{
         res.render('index', {error: 'Error during appointment remove'});
     }
@@ -84,6 +84,20 @@ app.post('/list', async (req, res) => {
     }catch(err){
         console.log(err);
         res.render('index', {error: 'cant find appointment'});  
+    }
+});
+
+app.post('/remove', async (req, res) => {
+    try {
+        var result = await AppointmentService.RemoveById(req.body.id);
+        if (result){
+            res.redirect('/list');
+        }else{
+            res.render('index', {error: 'Something went wrong'});
+        }
+    } catch (err) {
+        console.log(err);
+        res.render('index', {error: 'cant remove this appointment'});
     }
 });
 

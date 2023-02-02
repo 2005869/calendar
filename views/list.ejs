@@ -25,6 +25,7 @@
                 <th scope="col">Finished:</th>
                 <th scope="col">Notified:</th>
                 <th scope="col">Action:</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -36,12 +37,20 @@
                         <td><%= appo.description %></td>
                         <td><%= appo.finished %></td>
                         <td><%= appo.notified %></td>
+                        <td>
                         <% if(appo.finished == false) { %>
                             <form action="/finish" method="post">
                                 <input type="hidden" name="id" value="<%= appo._id %>">
-                                <td><button type="submit" class="btn btn-danger btn-block">Mark as finished</button></td>
+                                <button type="submit" class="btn btn-danger btn-block">Mark as finished</button>
                             </form>
-                        <% } %>
+                        <% } %>  
+                    </td>
+                    <td>
+                        <form action="/remove" method="post">
+                            <input type="hidden" name="id" value="<%= appo._id %>">
+                            <button type="submit" class="btn btn-danger btn-block">Remove</button>
+                        </form>                      
+                    </td>
                       </tr>
                     <% }) %>
               
