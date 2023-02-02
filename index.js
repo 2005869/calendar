@@ -72,6 +72,11 @@ app.post('/finish', async (req, res) => {
     }
 });
 
+app.get('/list', async (req, res) => {
+    var appos = await AppointmentService.GetAll(true);
+    res.render('list', {appos});
+});
+
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);
 });
