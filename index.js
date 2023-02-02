@@ -58,6 +58,10 @@ app.get('/getcalendar', async (req, res) => {
     res.json(appointment);
 });
 
+app.get('/event/:id', async (req, res) => {
+    var appointmentById = await AppointmentService.GetById(req.params.id);
+    res.render('event', {appointmentById});
+});
 
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);

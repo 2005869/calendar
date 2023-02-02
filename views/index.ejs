@@ -10,16 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calendar</h1>
-        <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/create">Create</a>
-            </li>
-          </ul>
-        <hr>
+        <%- include ('./top') %>
         <div id="calendar"></div>
     </div>
         
@@ -32,6 +23,9 @@
         initialView: 'dayGridMonth',
         locale: 'en',
         events: 'getcalendar',
+        eventClick: function(info){
+            window.location.href = '/event/' + info.event.id;
+        }
     });
 
     calendar.render();
