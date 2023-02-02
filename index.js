@@ -85,9 +85,14 @@ app.post('/list', async (req, res) => {
         console.log(err);
         res.render('index', {error: 'cant find appointment'});  
     }
-    
-
 });
+
+//poll
+var pollTime = 1 * 60 * 60 * 1000; //1h x 60m x 60s x 1000ms verify 
+
+setInterval(async () => {
+    await AppointmentService.SendNotification();
+}, pollTime);
 
 app.listen(serverPORT, () => {
     console.log(`Server run in port ${serverPORT}`);

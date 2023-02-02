@@ -23,6 +23,7 @@
                 <th scope="col">e-mail:</th>
                 <th scope="col">Description:</th>
                 <th scope="col">Finished:</th>
+                <th scope="col">Notified:</th>
                 <th scope="col">Action:</th>
               </tr>
             </thead>
@@ -34,6 +35,7 @@
                         <td><%= appo.email %></td>
                         <td><%= appo.description %></td>
                         <td><%= appo.finished %></td>
+                        <td><%= appo.notified %></td>
                         <% if(appo.finished == false) { %>
                             <form action="/finish" method="post">
                                 <input type="hidden" name="id" value="<%= appo._id %>">
