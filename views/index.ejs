@@ -11,6 +11,14 @@
 <body>
     <div class="container">
         <h1>Calendar</h1>
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create">Create</a>
+            </li>
+          </ul>
         <hr>
         <div id="calendar"></div>
     </div>
@@ -22,7 +30,8 @@
     const element = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(element, {
         initialView: 'dayGridMonth',
-        locale: 'en'
+        locale: 'en',
+        events: 'getcalendar',
     });
 
     calendar.render();
