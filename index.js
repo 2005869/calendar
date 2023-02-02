@@ -29,7 +29,7 @@ mongoose.connect(`mongodb://${mongoHost}:${mongoPORT}/${database}`, optionsDatab
 
 // Rotes
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {error: false});
 });
 
 app.get('/create', (req, res) => {
@@ -60,7 +60,16 @@ app.get('/getcalendar', async (req, res) => {
 
 app.get('/event/:id', async (req, res) => {
     var appointmentById = await AppointmentService.GetById(req.params.id);
-    res.render('event', {appointmentById});
+    res.render('event', {appointmentById, error: false});
+});
+
+app.post('/finish', async (req, res) => {
+    var result = await AppointmentService.Finish(req.body.id);
+    if (result){
+        res.render('index', {error: false});
+    }else{
+        res.render('index', {error: 'Error during appointment remove'});
+    }
 });
 
 app.listen(serverPORT, () => {

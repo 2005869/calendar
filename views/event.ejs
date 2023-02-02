@@ -22,7 +22,7 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row"><%= appointmentById._id %></th>
+                <th scope="row" id="appointmentId"><%= appointmentById._id %></th>
                 <td><%= appointmentById.name %></td>
                 <td><%= appointmentById.email %></td>
                 <td><%= appointmentById.description %></td>
@@ -30,9 +30,13 @@
             </tbody>
           </table>
           <% if(appointmentById.finished == false) { %>
-          <div class="d-grid gap-2">
-            <button class="btn btn-success btn-block">Mark as finished</button>
-        </div>
+            <form action="/finish" method="post">
+                <input type="hidden" name="id" value="<%= appointmentById._id %>">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success btn-block" type="submit">Mark as finished</button>
+                </div>
+            </form>
+          
         <% } %>
 
     </div>
@@ -40,24 +44,11 @@
     
     
 </body>
-<script>
-    const element = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(element, {
-        initialView: 'dayGridMonth',
-        locale: 'en',
-        events: 'getcalendar',
-        eventClick: function(info){
-            window.location.href = '/event/' + info.event.id;
-        }
-    });
-
-    calendar.render();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-<script src="jquery.mask.min.js"></script>
 
 
 </html>

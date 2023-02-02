@@ -11,6 +11,11 @@
 <body>
     <div class="container">
         <%- include ('./top') %>
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+        <% } %>
         <div id="calendar"></div>
     </div>
         
